@@ -1,38 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// describes all different props App component uses
-interface AppProps {
-    color?: string;
-}
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
 
-const App = (props: AppProps): JSX.Element => {
-    return <div>{props.color}</div>;
-};
-
-// class App extends React.Component<AppProps> {
-//     // need to pick between using 'state' or 'constructor' with TS
-//     state = { counter: 0 };
-
-//     onIncrement = (): void => {
-//         this.setState({ counter: this.state.counter + 1 });
-//     };
-
-//     onDecrement = (): void => {
-//         this.setState({ counter: this.state.counter - 1 });
-//     };
-
-//     render(){
-//         return (
-//             <div>
-//                 <button onClick={this.onIncrement}>Increment</button>
-//                 <button onClick={this.onDecrement}>Increment</button>
-//                 {this.state.counter}
-//             </div>
-//             )
-//     }
-// }
+const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
-    <App color="red" />,
+    <Provider store={store}>
+    <App color="red" />
+    </Provider>,
     document.querySelector('#root')
 );
