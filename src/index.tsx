@@ -2,12 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // describes all different props App component uses
 interface AppProps {
-    color: string;
+    color?: string;
 }
 
 class App extends React.Component<AppProps> {
+    state = { counter: 0 };
+
+    onIncrement = (): void => {
+        this.setState({ counter: this.state.counter + 1 });
+    };
+
+    onDecrement = (): void => {
+        this.setState({ counter: this.state.counter - 1 });
+    };
+
     render(){
-        return <div>{this.props.color}</div>
+        return (
+            <div>
+                <button onClick={this.onIncrement}>Increment</button>
+                <button onClick={this.onDecrement}>Increment</button>
+                {this.state.counter}
+            </div>
+            )
     }
 }
 
