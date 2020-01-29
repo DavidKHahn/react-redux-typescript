@@ -7,6 +7,11 @@ interface Todo {
     title: string;
     completed: boolean;
 }
+// creates organized reducers, action creators
+interface FetchTodosActions {
+    type: ActionTypes.fetchTodos;
+    payload: Todo[];
+}
 
 const url = "https://jsonplaceholder.typicode.com/todos";
 
@@ -15,7 +20,7 @@ export const fetchTodos = () => {
         // tells TS inside response.data we'll have array of objects
         const response = await axios.get<Todo[]>(url);
 
-        dispatch({
+        dispatch<FetchTodosActions>({
             type: ActionTypes.fetchTodos,
             // response.data equals arrays of TODOS
             payload: response.data
