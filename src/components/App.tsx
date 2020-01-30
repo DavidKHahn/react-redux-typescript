@@ -9,12 +9,27 @@ interface AppProps {
 }
 
 class _App extends React.Component<AppProps> {
+    onButtonClick = (): void => {
+        this.props.fetchTodos();
+    };
+    // helper method
+    renderList(): JSX.Element[] {
+        return this.props.todos.map((todo: Todo) => {
+            return <div key={todo.id}>{todo.title}</div>
+        })
+    }
+
     componentDidMount() {
         this.props.fetchTodos();
     }
 
     render(){
-        return <div>Hi there!</div>;
+        return (
+            <div>
+                <button onClick={this.onButtonClick}>Fetch</button>
+                {this.renderList()}
+            </div>
+        );
     }
 }
 
