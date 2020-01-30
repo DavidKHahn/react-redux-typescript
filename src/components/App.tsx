@@ -19,10 +19,6 @@ class _App extends React.Component<AppProps> {
         })
     }
 
-    componentDidMount() {
-        this.props.fetchTodos();
-    }
-
     render(){
         return (
             <div>
